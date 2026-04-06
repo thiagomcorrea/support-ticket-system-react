@@ -1,0 +1,172 @@
+.container-center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+}
+
+.login {
+  width: 420px;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.login-area {
+  display: flex;
+  justify-content: center;
+  background: #0f172a;
+}
+
+.login-area img {
+  padding: 20px;
+  width: 140px;
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+form {
+  padding: 30px 28px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+form h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #2a2f45;
+  background: #0f172a;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.input.error {
+  border: 1px solid #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 12px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+
+.login form input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.login form input::placeholder {
+  color: var(--text-muted);
+}
+
+/* foco correto (SEM QUEBRAR DARK MODE) */
+.login form input:focus {
+  background: var(--surface);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+  color: var(--text-primary);
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+
+form button {
+  height: 48px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 6px;
+  transition: all 0.2s ease;
+}
+
+form button:hover {
+  background: #1d4ed8;
+}
+
+/* =========================
+   LINK
+   ========================= */
+
+.login a {
+  display: block;
+  width: 100%;
+  padding: 0 28px 24px;
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   DARK MODE
+   ========================= */
+
+body[data-theme="dark"] .login {
+  background: #0f172a;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme="dark"] .login-area {
+  background: #020617;
+}
+
+body[data-theme="dark"] form h1 {
+  color: #f8fafc;
+}
+
+body[data-theme="dark"] .login form input {
+  background: #020617;
+  border-color: #243041;
+  color: #f8fafc;
+}
+
+body[data-theme="dark"] .login form input:focus {
+  background: #0b1220;
+  border-color: #3b82f6;
+}
+
+body[data-theme="dark"] .login a {
+  color: #60a5fa;
+}

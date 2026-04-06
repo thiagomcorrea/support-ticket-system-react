@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
+import AuthProvider from "./contexts/auth";
+import Routes from "./routes";
+import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.body.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <ToastContainer
+          position="top-right"
+          autoClose={3200}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="light"
+          toastClassName="app-toast"
+          bodyClassName="app-toast-body"
+          progressClassName="app-toast-progress"
+        />
+        <Routes />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
