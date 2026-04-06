@@ -252,7 +252,7 @@ useEffect(() => {
   return () => {
     window.removeEventListener("keydown", handleKeyDown);
   };
-}, [isDeleteModalOpen]);
+}, [isDeleteModalOpen, closeDeleteModal]);
 
   // Executes the search and resets pagination
   async function onSearchSubmit(e) {

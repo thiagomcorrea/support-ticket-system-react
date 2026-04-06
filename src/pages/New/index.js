@@ -50,7 +50,29 @@ export default function New() {
   }
 
   useEffect(() => {
-    async function loadCustomers() {
+  async function loadTicketById(list) {
+    await firebase
+      .firestore()
+      .collection("calls")
+      .doc(id)
+      .get()
+      .then((snapshot) => {
+        const data = snapshot.data();
+
+        setSubject(data.subject || data.assunto || "");
+        setStatus(normalizeStatus(data.status));
+        setDetails(data.details || data.complemento || "");
+
+        const index = list.findIndex(
+          (item) => item.id === (data.clientId || data.clienteId)
+        );
+
+        setCustomerIndex(index >= 0 ? index : 0);
+        setEditing(true);
+      });
+  }
+
+  async function loadCustomers() {
       try {
         const snapshot = await firebase.firestore().collection("customers").get();
 
@@ -81,7 +103,7 @@ export default function New() {
         setLoadingCustomers(false);
 
         if (id) {
-          loadTicketById(list);
+          await loadTicketById(list);
         }
       } catch (error) {
         console.log("Error loading customers:", error);
@@ -92,28 +114,6 @@ export default function New() {
 
     loadCustomers();
   }, [id]);
-
-  async function loadTicketById(list) {
-    await firebase
-      .firestore()
-      .collection("calls")
-      .doc(id)
-      .get()
-      .then((snapshot) => {
-        const data = snapshot.data();
-
-        setSubject(data.subject || data.assunto || "");
-        setStatus(normalizeStatus(data.status));
-        setDetails(data.details || data.complemento || "");
-
-        const index = list.findIndex(
-          (item) => item.id === (data.clientId || data.clienteId)
-        );
-
-        setCustomerIndex(index >= 0 ? index : 0);
-        setEditing(true);
-      });
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
