@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import firebase from "../../services/firebaseConnection";
 import { toast } from "react-toastify";
 
@@ -180,12 +180,12 @@ export default function CustomersList({
   }
 
   // Closes the delete confirmation modal and clears the selected customer
-  function closeDeleteModal() {
+  const closeDeleteModal = useCallback(() => {
     if (deleting) return;
 
     setIsDeleteModalOpen(false);
     setCustomerToDelete(null);
-  }
+  }, [deleting]);
 
   // Deletes the customer currently selected in the confirmation modal
   async function handleDelete() {
